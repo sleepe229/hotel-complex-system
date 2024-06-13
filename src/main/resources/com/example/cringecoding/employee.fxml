@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cringecoding.Controllers.EmployeeController">
+    <top>
+        <Label text="Service Employee Dashboard" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <TableView fx:id="floorsTable" prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="floorIdColumn" text="Floor ID" />
+                <TableColumn fx:id="buildingIdColumn" text="Building ID" />
+                <TableColumn fx:id="numberOfRooms" text="Number of rooms" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox spacing="10.0" alignment="CENTER">
+                    <Label text="Employee ID:" />
+                    <TextField fx:id="employeeIdField" />
+                    <Button fx:id="btnRefreshFloors" mnemonicParsing="false" text="Refresh Floors" onAction="#handleRefreshFloors" />
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>

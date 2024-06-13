@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<AnchorPane xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cringecoding.Controllers.FloorManagementController"
+            prefHeight="400.0" prefWidth="600.0">
+    <TableView fx:id="floorTable" layoutX="20.0" layoutY="50.0" prefHeight="200.0" prefWidth="560.0">
+        <columns>
+            <TableColumn fx:id="idColumn" text="Floor ID" prefWidth="100.0"/>
+            <TableColumn fx:id="buildingIdColumn" text="Building ID" prefWidth="100.0"/>
+            <TableColumn fx:id="numberOfRoomsColumn" text="Number of Rooms" prefWidth="100.0"/>
+        </columns>
+    </TableView>
+    <TextField fx:id="searchField" layoutX="20.0" layoutY="10.0" promptText="Search..."/>
+    <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleSearchFloor" text="Search"/>
 
+    <TextField fx:id="idField" layoutX="20.0" layoutY="270.0" promptText="Floor ID"/>
+    <TextField fx:id="buildingIdField" layoutX="150.0" layoutY="270.0" promptText="Building ID"/>
+    <TextField fx:id="numberOfRoomsField" layoutX="280.0" layoutY="270.0" promptText="Number of Rooms"/>
+    <Button layoutX="400.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleAddFloor" text="Add"/>
+    <Button layoutX="460.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleUpdateFloor" text="Update"/>
+    <Button layoutX="520.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleDeleteFloor" text="Delete"/>
 </AnchorPane>

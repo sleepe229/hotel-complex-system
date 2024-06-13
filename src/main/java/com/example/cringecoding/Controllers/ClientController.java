@@ -1,2 +1,4 @@
-package com.example.cringecoding.Controllers;public class ClientController {
+package com.example.cringecoding.Controllers;
+
+public class ClientController {
 }

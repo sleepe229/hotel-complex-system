@@ -1,2 +1,4 @@
-package com.example.cringecoding.Controllers;public class OrganizationControllet {
+package com.example.cringecoding.Controllers;
+
+public class OrganizationController {
 }

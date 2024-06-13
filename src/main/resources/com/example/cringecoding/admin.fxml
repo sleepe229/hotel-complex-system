@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cringecoding.Controllers.AdminController">
+    <center>
+        <AnchorPane>
+            <Button fx:id="btn_complex_management" layoutX="232.0" layoutY="126.0" mnemonicParsing="false"
+                    text="Complex management" onAction="#handleComplexManagement"/>
+            <Button fx:id="btn_hotel_management" layoutX="235.0" layoutY="161.0" mnemonicParsing="false"
+                    text="Buildings management" onAction="#handleHotelManagement"/>
+            <Button fx:id="btn_room_management" layoutX="240.0" layoutY="239.0" mnemonicParsing="false"
+                    text="Room management" onAction="#handleRoomManagement"/>
+            <Button fx:id="btn_floor_management" layoutX="242.0" layoutY="200.0" mnemonicParsing="false"
+                    text="Floor management" onAction="#handleFloorManagement"/>
+        </AnchorPane>
+    </center>
+</BorderPane>

@@ -1,5 +1,6 @@
-package com.example.cringecoding.Services;
+package com.example.cringecoding.Controllers;
 
+import com.example.cringecoding.Models.HotelBuilding;
 import com.example.cringecoding.Models.HotelComplex;
 import com.example.cringecoding.DBUtils.HibernateUtil;
 import org.hibernate.Session;
@@ -8,50 +9,55 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class HotelComplexService {
+public class BuildingManagementService {
 
-    public void saveHotelComplex(HotelComplex hotelComplex) {
-        executeTransaction(session -> session.save(hotelComplex));
+    public void saveBuilding(HotelBuilding building) {
+        executeTransaction(session -> session.save(building));
     }
 
-    public void updateHotelComplexAddress(String complexName, String newAddress) {
+    public void updateBuildingAddress(Long id, String newAddress) {
         executeTransaction(session -> {
-            String hql = "UPDATE HotelComplex SET address = :newAddress WHERE complexName = :complexName";
+            String hql = "UPDATE HotelBuilding SET buildingAddress = :newAddress WHERE idBuilding = :id";
             Query query = session.createQuery(hql);
             query.setParameter("newAddress", newAddress);
-            query.setParameter("complexName", complexName);
+            query.setParameter("id", id);
             query.executeUpdate();
         });
+    }
+
+    public HotelBuilding getBuildingById(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.get(HotelBuilding.class, id);
+        }
+    }
+
+    public List<HotelBuilding> getAllBuildings() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from HotelBuilding", HotelBuilding.class).list();
+        }
+    }
+
+    public void deleteBuilding(Long id) {
+        executeTransaction(session -> {
+            HotelBuilding building = session.get(HotelBuilding.class, id);
+            if (building != null) {
+                session.delete(building);
+            }
+        });
+    }
+
+    public List<HotelBuilding> searchBuildingsByName(String name) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM HotelBuilding WHERE buildingAddress LIKE :name";
+            Query<HotelBuilding> query = session.createQuery(hql, HotelBuilding.class);
+            query.setParameter("name", "%" + name + "%");
+            return query.list();
+        }
     }
 
     public HotelComplex getHotelComplexByName(String name) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(HotelComplex.class, name);
-        }
-    }
-
-    public List<HotelComplex> getAllHotelComplexes() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from HotelComplex", HotelComplex.class).list();
-        }
-    }
-
-    public void deleteHotelComplex(String name, String address) {
-        executeTransaction(session -> {
-            String hql = "DELETE FROM HotelComplex WHERE complexName = :complexName OR address = :address";
-            Query query = session.createQuery(hql);
-            query.setParameter("complexName", name);
-            query.setParameter("address", address);
-            query.executeUpdate();
-        });
-    }
-
-    public List<HotelComplex> searchComplexesByName(String name) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM HotelComplex WHERE complexName LIKE :complexName";
-            Query<HotelComplex> query = session.createQuery(hql, HotelComplex.class);
-            query.setParameter("complexName", "%" + name + "%");
-            return query.list();
         }
     }
 

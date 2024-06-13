@@ -11,7 +11,6 @@ public class FloorDTO {
         this.numberOfRooms = numberOfRooms;
     }
 
-    // Getters and setters
     public Long getIdFloor() {
         return idFloor;
     }
