@@ -43,6 +43,10 @@ public class HotelBuilding {
     @Column(name = "building_address")
     private String buildingAddress;
 
+    public Boolean getWorkStatus() {
+        return workStatus;
+    }
+
     @PostLoad
     private void postLoad() {
         this.hotelComplexName = hotelComplex != null ? hotelComplex.getComplexName() : null;

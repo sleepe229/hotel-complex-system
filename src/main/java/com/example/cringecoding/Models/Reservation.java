@@ -4,50 +4,42 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "reservation")
+@Table(name = "Reservation")
 public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reservation")
     private Long idReservation;
 
     @ManyToOne
-    @JoinColumn(name = "room_id", referencedColumnName = "room_id")
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "organization_name", referencedColumnName = "name")
+    @JoinColumn(name = "organization_name")
     private Organization organization;
 
     @ManyToOne
-    @JoinColumn(name = "client_phone_number", referencedColumnName = "phone_number")
+    @JoinColumn(name = "client_phone_number", nullable = false)
     private Client client;
 
     @Column(name = "payment_time")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date paymentTime;
 
     @Column(name = "reservation_status")
     private String reservationStatus;
 
-    @Column(name = "floor_number")
-    private int floorNumber;
-
-    @Column(name = "number_of_booked_rooms")
-    private int numberOfBookedRooms;
-
     @Column(name = "arrival_date")
-    @Temporal(TemporalType.DATE)
     private Date arrivalDate;
 
     @Column(name = "number_of_nights")
-    private int numberOfNights;
+    private Integer numberOfNights;
 
     @Column(name = "number_of_people")
-    private int numberOfPeople;
+    private Integer numberOfPeople;
 
     @Column(name = "reservation_date")
-    @Temporal(TemporalType.DATE)
     private Date reservationDate;
 
     @Column(name = "cur_room_status")
@@ -101,22 +93,6 @@ public class Reservation {
         this.reservationStatus = reservationStatus;
     }
 
-    public int getFloorNumber() {
-        return floorNumber;
-    }
-
-    public void setFloorNumber(int floorNumber) {
-        this.floorNumber = floorNumber;
-    }
-
-    public int getNumberOfBookedRooms() {
-        return numberOfBookedRooms;
-    }
-
-    public void setNumberOfBookedRooms(int numberOfBookedRooms) {
-        this.numberOfBookedRooms = numberOfBookedRooms;
-    }
-
     public Date getArrivalDate() {
         return arrivalDate;
     }
@@ -125,19 +101,19 @@ public class Reservation {
         this.arrivalDate = arrivalDate;
     }
 
-    public int getNumberOfNights() {
+    public Integer getNumberOfNights() {
         return numberOfNights;
     }
 
-    public void setNumberOfNights(int numberOfNights) {
+    public void setNumberOfNights(Integer numberOfNights) {
         this.numberOfNights = numberOfNights;
     }
 
-    public int getNumberOfPeople() {
+    public Integer getNumberOfPeople() {
         return numberOfPeople;
     }
 
-    public void setNumberOfPeople(int numberOfPeople) {
+    public void setNumberOfPeople(Integer numberOfPeople) {
         this.numberOfPeople = numberOfPeople;
     }
 

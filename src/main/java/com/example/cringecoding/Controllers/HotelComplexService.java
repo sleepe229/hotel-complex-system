@@ -1,4 +1,4 @@
-package com.example.cringecoding.Services;
+package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.HotelComplex;
 import com.example.cringecoding.DBUtils.HibernateUtil;

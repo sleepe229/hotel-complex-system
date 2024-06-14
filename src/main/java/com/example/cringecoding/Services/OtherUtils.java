@@ -22,13 +22,15 @@ public class OtherUtils {
             e.printStackTrace();
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root, 600, 400));
-        stage.show();
-}
-
-
+        if (root != null) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } else {
+            showAlert("Error", "Unable to load the scene.");
+        }
+    }
 
     static boolean isEmptyFields(String login, String password){
         if (login.isEmpty() || password.isEmpty()){
@@ -49,5 +51,12 @@ public class OtherUtils {
             return true;
         }
         return false;
+    }
+
+    private static void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

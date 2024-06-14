@@ -3,7 +3,7 @@ package com.example.cringecoding.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Rooms")
+@Table(name = "rooms")
 public class Room {
 
     @Id
@@ -17,14 +17,6 @@ public class Room {
 
     @Column(name = "room_number")
     private int roomNumber;
-
-    @Transient
-    private Long floorId;
-
-    @PostLoad
-    private void postLoad() {
-        this.floorId = floor != null ? floor.getIdFloor() : null;
-    }
 
     public Long getRoomId() {
         return roomId;
@@ -40,7 +32,6 @@ public class Room {
 
     public void setFloor(Floor floor) {
         this.floor = floor;
-        this.floorId = floor != null ? floor.getIdFloor() : null;
     }
 
     public int getRoomNumber() {
@@ -49,13 +40,5 @@ public class Room {
 
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public Long getFloorId() {
-        return floorId;
-    }
-
-    public void setFloorId(Long floorId) {
-        this.floorId = floorId;
     }
 }

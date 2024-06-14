@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cringecoding.Controllers.ClientController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cringecoding.Controllers.ClientController">
+    <top>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
+            <TextField fx:id="phoneNumberField" promptText="Phone Number" />
+            <Button text="Book Room" onAction="#handleBookRoom" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10">
+            <TableView fx:id="complexTable">
+                <columns>
+                    <TableColumn fx:id="complexNameColumn" text="Complex Name" />
+                    <TableColumn fx:id="complexAddressColumn" text="Address" />
+                </columns>
+            </TableView>
+            <HBox spacing="10">
+                <Label text="Room Type:" />
+                <ComboBox fx:id="roomTypeComboBox" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

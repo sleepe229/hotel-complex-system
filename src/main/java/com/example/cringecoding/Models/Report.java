@@ -4,36 +4,30 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "report")
+@Table(name = "reports")
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "report_id")
-    private Long reportId;
+    @Column(name = "id_report")
+    private Long idReport;
 
     @ManyToOne
-    @JoinColumn(name = "client_phone_number", referencedColumnName = "phone_number")
+    @JoinColumn(name = "client_phone_number")
     private Client client;
 
-    @Column(name = "review_text")
-    private String reviewText;
+    @Column(name = "report_date")
+    private Date reportDate;
 
-    @Column(name = "solution")
-    private String solution;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "report_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date reportTime;
-
-    @Column(name = "text")
-    private String text;
-
-    public Long getReportId() {
-        return reportId;
+    // Getters and Setters
+    public Long getIdReport() {
+        return idReport;
     }
 
-    public void setReportId(Long reportId) {
-        this.reportId = reportId;
+    public void setIdReport(Long idReport) {
+        this.idReport = idReport;
     }
 
     public Client getClient() {
@@ -44,35 +38,19 @@ public class Report {
         this.client = client;
     }
 
-    public String getReviewText() {
-        return reviewText;
+    public Date getReportDate() {
+        return reportDate;
     }
 
-    public void setReviewText(String reviewText) {
-        this.reviewText = reviewText;
+    public void setReportDate(Date reportDate) {
+        this.reportDate = reportDate;
     }
 
-    public String getSolution() {
-        return solution;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSolution(String solution) {
-        this.solution = solution;
-    }
-
-    public Date getReportTime() {
-        return reportTime;
-    }
-
-    public void setReportTime(Date reportTime) {
-        this.reportTime = reportTime;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
