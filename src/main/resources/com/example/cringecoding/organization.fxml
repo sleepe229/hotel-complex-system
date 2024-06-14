@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cringecoding.Controllers.OrganizationController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cringecoding.Controllers.OrganizationController">
+    <top>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
+            <TextField fx:id="organizationNameField" promptText="Organization Name" />
+            <Button text="Search" onAction="#handleSearchReservations" />
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="reservationTable">
+            <columns>
+                <TableColumn fx:id="reservationIdColumn" text="Reservation ID" />
+                <TableColumn fx:id="clientPhoneNumberColumn" text="Client Phone Number" />
+                <TableColumn fx:id="roomNumberColumn" text="Room Number" />
+                <TableColumn fx:id="arrivalDateColumn" text="Arrival Date" />
+                <TableColumn fx:id="numberOfNightsColumn" text="Nights" />
+                <TableColumn fx:id="reservationStatusColumn" text="Status" />
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
+            <Button text="Delete" onAction="#handleDeleteReservation" />
+        </HBox>
+    </bottom>
+</BorderPane>
