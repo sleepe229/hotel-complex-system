@@ -64,7 +64,7 @@ public class FloorManagementController {
     @FXML
     private void handleSearchFloor(ActionEvent event) {
         String searchQuery = searchField.getText();
-        List<Floor> floors = floorManagementService.getAllFloors(); // Add search functionality if needed
+        List<Floor> floors = floorManagementService.getAllFloors();
         updateFloorTable(floors);
     }
 

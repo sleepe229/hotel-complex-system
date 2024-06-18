@@ -1,15 +1,11 @@
 package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.*;
-import com.example.cringecoding.DBUtils.HibernateUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.Date;
 import java.util.List;
@@ -32,10 +28,10 @@ public class ClientController {
     @FXML
     private ComboBox<String> roomTypeComboBox;
 
-    private ClientService clientService = new ClientService();
-    private HotelComplexService hotelComplexService = new HotelComplexService();
-    private ReservationService reservationService = new ReservationService();
-    private OrganizationService organizationService = new OrganizationService();
+    private final ClientService clientService = new ClientService();
+    private final HotelComplexService hotelComplexService = new HotelComplexService();
+    private final ReservationService reservationService = new ReservationService();
+    private final OrganizationService organizationService = new OrganizationService();
 
     @FXML
     private void initialize() {
@@ -53,7 +49,7 @@ public class ClientController {
     }
 
     @FXML
-    private void handleBookRoom(ActionEvent event) {
+    private void handleBookRoom() {
         HotelComplex selectedComplex = complexTable.getSelectionModel().getSelectedItem();
         String roomType = roomTypeComboBox.getValue();
         String phoneNumber = phoneNumberField.getText();
