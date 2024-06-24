@@ -2,6 +2,7 @@ package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.DTO.FloorDTO;
 import com.example.cringecoding.DBUtils.HibernateUtil;
+import com.example.cringecoding.Services.OtherUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +16,9 @@ import java.util.List;
 
 public class EmployeeController {
 
+    @FXML
     public Button btnRefreshFloors;
+
     @FXML
     private TableView<FloorDTO> floorsTable;
 
@@ -23,10 +26,10 @@ public class EmployeeController {
     private TableColumn<FloorDTO, Long> floorIdColumn;
 
     @FXML
-    private TableColumn<FloorDTO, Long> buildingIdColumn;
+    private TableColumn<FloorDTO, Integer> numberOfFloorColumn;
 
     @FXML
-    private TableColumn<FloorDTO, Integer> numberOfRooms;
+    private TableColumn<FloorDTO, String> buildingAddressColumn;
 
     @FXML
     private TextField employeeIdField;
@@ -36,8 +39,8 @@ public class EmployeeController {
     @FXML
     public void initialize() {
         floorIdColumn.setCellValueFactory(new PropertyValueFactory<>("idFloor"));
-        buildingIdColumn.setCellValueFactory(new PropertyValueFactory<>("idBuilding"));
-        numberOfRooms.setCellValueFactory(new PropertyValueFactory<>("numberOfRooms"));
+        numberOfFloorColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfFloor"));
+        buildingAddressColumn.setCellValueFactory(new PropertyValueFactory<>("buildingAddress"));
         floorsTable.setItems(floorsList);
     }
 
@@ -46,7 +49,7 @@ public class EmployeeController {
         String employeeIdText = employeeIdField.getText();
         if (employeeIdText != null && !employeeIdText.isEmpty()) {
             try {
-                int employeeId = Integer.parseInt(employeeIdText);
+                String employeeId = employeeIdText;
                 loadFloors(employeeId);
             } catch (NumberFormatException e) {
                 showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter a valid numeric Employee ID.");
@@ -56,24 +59,32 @@ public class EmployeeController {
         }
     }
 
-    private void loadFloors(int CURRENT_EMPLOYEE_ID) {
+    private void loadFloors(String employeeFullName) {
         floorsList.clear();
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Object[]> query = session.createQuery(
-                    "SELECT f.idFloor, f.hotelBuilding.idBuilding, f.numberOfRooms FROM Floor f JOIN f.serviceEmployees se WHERE se.idEmployee = :employeeId", Object[].class);
-            query.setParameter("employeeId", (long) CURRENT_EMPLOYEE_ID);
+                    "SELECT f.idFloor, f.numberOfFloor, f.hotelBuilding.buildingAddress " +
+                            "FROM Floor f JOIN f.serviceEmployees se " +
+                            "WHERE se.fullName LIKE :employeeFullName", Object[].class);
+            query.setParameter("employeeFullName", "%" + employeeFullName + "%");
             List<Object[]> results = query.getResultList();
 
             for (Object[] result : results) {
                 Long idFloor = (Long) result[0];
-                Long idBuilding = (Long) result[1];
-                Integer numberOfRooms = (Integer) result[2];
-                floorsList.add(new FloorDTO(idFloor, idBuilding, numberOfRooms));
+                Integer numberOfFloor = (Integer) result[1];
+                String buildingAddress = (String) result[2];
+                floorsList.add(new FloorDTO(idFloor, numberOfFloor, buildingAddress));
             }
+            floorsTable.setItems(floorsList);
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to load floors.");
         }
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        OtherUtils.changeScene(event, "/com/example/cringecoding/hello-view.fxml", "Hello View");
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {

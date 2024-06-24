@@ -2,6 +2,7 @@ package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.Floor;
 import com.example.cringecoding.Models.HotelBuilding;
+import com.example.cringecoding.Services.OtherUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ public class FloorManagementController {
     private TableColumn<Floor, Long> buildingIdColumn;
 
     @FXML
-    private TableColumn<Floor, Integer> numberOfRoomsColumn;
+    private TableColumn<Floor, Integer> numberOfFloorColumn;
 
     @FXML
     private TextField searchField;
@@ -39,7 +40,7 @@ public class FloorManagementController {
     private TextField buildingIdField;
 
     @FXML
-    private TextField numberOfRoomsField;
+    private TextField numberOfFloorField;
 
     @FXML
     private Button handleAddFloor;
@@ -57,7 +58,7 @@ public class FloorManagementController {
     private void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idFloor"));
         buildingIdColumn.setCellValueFactory(new PropertyValueFactory<>("buildingId"));
-        numberOfRoomsColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfRooms"));
+        numberOfFloorColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfFloor"));
         loadFloorData();
     }
 
@@ -71,7 +72,7 @@ public class FloorManagementController {
     @FXML
     private void handleAddFloor(ActionEvent event) {
         Long buildingId = Long.parseLong(buildingIdField.getText());
-        int numberOfRooms = Integer.parseInt(numberOfRoomsField.getText());
+        int numberOfFloor = Integer.parseInt(numberOfFloorField.getText());
 
         HotelBuilding hotelBuilding = buildingManagementService.getBuildingById(buildingId);
         if (hotelBuilding == null) {
@@ -81,7 +82,7 @@ public class FloorManagementController {
 
         Floor floor = new Floor();
         floor.setHotelBuilding(hotelBuilding);
-        floor.setNumberOfRooms(numberOfRooms);
+        floor.setNumberOfFloor(numberOfFloor);
 
         floorManagementService.saveFloor(floor);
         loadFloorData();
@@ -91,7 +92,7 @@ public class FloorManagementController {
     @FXML
     private void handleUpdateFloor(ActionEvent event) {
         Long id = Long.parseLong(idField.getText());
-        int numberOfRooms = Integer.parseInt(numberOfRoomsField.getText());
+        int numberOfFloor = Integer.parseInt(numberOfFloorField.getText());
 
         Floor floor = floorManagementService.getFloorById(id);
         if (floor == null) {
@@ -99,7 +100,7 @@ public class FloorManagementController {
             return;
         }
 
-        floor.setNumberOfRooms(numberOfRooms);
+        floor.setNumberOfFloor(numberOfFloor);
 
         floorManagementService.updateFloor(floor);
         loadFloorData();
@@ -128,7 +129,7 @@ public class FloorManagementController {
     private void clearFields() {
         idField.clear();
         buildingIdField.clear();
-        numberOfRoomsField.clear();
+        numberOfFloorField.clear();
     }
 
     private void showAlert(String title, String message) {
@@ -136,5 +137,10 @@ public class FloorManagementController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        OtherUtils.changeScene(event, "/com/example/cringecoding/admin.fxml", "?");
     }
 }

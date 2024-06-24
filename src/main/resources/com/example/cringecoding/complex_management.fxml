@@ -24,4 +24,5 @@
     <Button layoutX="400.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleAddComplex" text="Add"/>
     <Button layoutX="460.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleUpdateComplex" text="Update"/>
     <Button layoutX="520.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleDeleteComplex" text="Delete"/>
+    <Button text="Back" onAction="#handleBack"/>
 </AnchorPane>

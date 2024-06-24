@@ -1,6 +1,7 @@
 package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.Reservation;
+import com.example.cringecoding.Services.OtherUtils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -97,5 +98,10 @@ public class OrganizationController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        OtherUtils.changeScene(event, "/com/example/cringecoding/hello-view.fxml", "?");
     }
 }

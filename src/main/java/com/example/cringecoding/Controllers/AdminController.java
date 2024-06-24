@@ -38,4 +38,9 @@ public class AdminController {
     private void handleFloorManagement(ActionEvent event) {
         OtherUtils.changeScene(event, "/com/example/cringecoding/floor_management.fxml", "Floor Management");
     }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        OtherUtils.changeScene(event, "/com/example/cringecoding/hello-view.fxml", "?");
+    }
 }

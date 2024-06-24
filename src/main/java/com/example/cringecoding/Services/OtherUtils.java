@@ -32,27 +32,6 @@ public class OtherUtils {
         }
     }
 
-    static boolean isEmptyFields(String login, String password){
-        if (login.isEmpty() || password.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Fields must be filled in");
-            alert.setContentText("Enter all data");
-            alert.showAndWait();
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isEmptyField(String id){
-        if (id.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Field must be filled in");
-            alert.showAndWait();
-            return true;
-        }
-        return false;
-    }
-
     private static void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

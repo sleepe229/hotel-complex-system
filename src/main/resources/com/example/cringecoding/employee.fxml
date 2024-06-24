@@ -11,8 +11,8 @@
         <TableView fx:id="floorsTable" prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="floorIdColumn" text="Floor ID" />
-                <TableColumn fx:id="buildingIdColumn" text="Building ID" />
-                <TableColumn fx:id="numberOfRooms" text="Number of rooms" />
+                <TableColumn fx:id="buildingAddressColumn" text="Building Address" />
+                <TableColumn fx:id="numberOfFloorColumn" text="Number of Floor" />
             </columns>
         </TableView>
     </center>
@@ -20,9 +20,10 @@
         <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                 <HBox spacing="10.0" alignment="CENTER">
-                    <Label text="Employee ID:" />
+                    <Label text="Employee NAME:" />
                     <TextField fx:id="employeeIdField" />
                     <Button fx:id="btnRefreshFloors" mnemonicParsing="false" text="Refresh Floors" onAction="#handleRefreshFloors" />
+                    <Button text="Back" onAction="#handleBack"/>
                 </HBox>
             </children>
         </VBox>

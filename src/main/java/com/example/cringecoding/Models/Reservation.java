@@ -39,6 +39,28 @@ public class Reservation {
     @Column(name = "number_of_people")
     private Integer numberOfPeople;
 
+    @Column(name = "floor_number")
+    private Integer floorNumber;
+
+    @Column(name = "number_of_booked_rooms")
+    private Integer numberOfBookedRooms;
+
+    public Integer getFloorNumber() {
+        return floorNumber;
+    }
+
+    public void setFloorNumber(Integer floorNumber) {
+        this.floorNumber = floorNumber;
+    }
+
+    public Integer getNumberOfBookedRooms() {
+        return numberOfBookedRooms;
+    }
+
+    public void setNumberOfBookedRooms(Integer numberOfBookedRooms) {
+        this.numberOfBookedRooms = numberOfBookedRooms;
+    }
+
     @Column(name = "reservation_date")
     private Date reservationDate;
 

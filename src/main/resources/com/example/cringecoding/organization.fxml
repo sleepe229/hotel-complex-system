@@ -9,6 +9,7 @@
         <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
             <TextField fx:id="organizationNameField" promptText="Organization Name" />
             <Button text="Search" onAction="#handleSearchReservations" />
+            <Button text="Back" onAction="#handleBack"/>
         </HBox>
     </top>
     <center>

@@ -1,6 +1,7 @@
 package com.example.cringecoding.Models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Floors")
@@ -15,16 +16,11 @@ public class Floor {
     @JoinColumn(name = "id_building", referencedColumnName = "id_building")
     private HotelBuilding hotelBuilding;
 
-    @Column(name = "number_of_rooms")
-    private int numberOfRooms;
+    @Column(name = "number_of_floor")
+    private int numberOfFloor;
 
-    @Transient
-    private Long buildingId;
-
-    @PostLoad
-    private void postLoad() {
-        this.buildingId = hotelBuilding != null ? hotelBuilding.getIdBuilding() : null;
-    }
+    @OneToMany(mappedBy = "floor")
+    private Set<ServiceEmployee> serviceEmployees;
 
     public Long getIdFloor() {
         return idFloor;
@@ -40,22 +36,21 @@ public class Floor {
 
     public void setHotelBuilding(HotelBuilding hotelBuilding) {
         this.hotelBuilding = hotelBuilding;
-        this.buildingId = hotelBuilding != null ? hotelBuilding.getIdBuilding() : null;
     }
 
-    public int getNumberOfRooms() {
-        return numberOfRooms;
+    public int getNumberOfFloor() {
+        return numberOfFloor;
     }
 
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
+    public void setNumberOfFloor(int numberOfFloor) {
+        this.numberOfFloor = numberOfFloor;
     }
 
-    public Long getBuildingId() {
-        return buildingId;
+    public Set<ServiceEmployee> getServiceEmployees() {
+        return serviceEmployees;
     }
 
-    public void setBuildingId(Long buildingId) {
-        this.buildingId = buildingId;
+    public void setServiceEmployees(Set<ServiceEmployee> serviceEmployees) {
+        this.serviceEmployees = serviceEmployees;
     }
 }

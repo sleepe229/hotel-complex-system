@@ -21,7 +21,6 @@ public class Report {
     @Column(name = "description")
     private String description;
 
-    // Getters and Setters
     public Long getIdReport() {
         return idReport;
     }

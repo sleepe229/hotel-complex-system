@@ -16,20 +16,6 @@ public class OrganizationService {
         }
     }
 
-    private void executeTransaction(TransactionConsumer consumer) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            consumer.accept(session);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
-
     public List<Reservation> getReservationsByOrganizationName(String organizationName) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM Reservation WHERE organization.name = :organizationName";
@@ -54,9 +40,5 @@ public class OrganizationService {
             }
             e.printStackTrace();
         }
-    }
-    @FunctionalInterface
-    private interface TransactionConsumer {
-        void accept(Session session) throws Exception;
     }
 }

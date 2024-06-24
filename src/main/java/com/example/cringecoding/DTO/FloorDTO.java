@@ -2,13 +2,13 @@ package com.example.cringecoding.DTO;
 
 public class FloorDTO {
     private Long idFloor;
-    private Long idBuilding;
-    private Integer numberOfRooms;
+    private Integer numberOfFloor;
+    private String buildingAddress;
 
-    public FloorDTO(Long idFloor, Long idBuilding, Integer numberOfRooms) {
+    public FloorDTO(Long idFloor, Integer numberOfFloor, String buildingAddress) {
         this.idFloor = idFloor;
-        this.idBuilding = idBuilding;
-        this.numberOfRooms = numberOfRooms;
+        this.numberOfFloor = numberOfFloor;
+        this.buildingAddress = buildingAddress;
     }
 
     public Long getIdFloor() {
@@ -19,19 +19,19 @@ public class FloorDTO {
         this.idFloor = idFloor;
     }
 
-    public Long getIdBuilding() {
-        return idBuilding;
+    public Integer getNumberOfFloor() {
+        return numberOfFloor;
     }
 
-    public void setIdBuilding(Long idBuilding) {
-        this.idBuilding = idBuilding;
+    public void setNumberOfFloor(Integer numberOfFloor) {
+        this.numberOfFloor = numberOfFloor;
     }
 
-    public Integer getNumberOfRooms() {
-        return numberOfRooms;
+    public String getBuildingAddress() {
+        return buildingAddress;
     }
 
-    public void setNumberOfRooms(Integer numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
+    public void setBuildingAddress(String buildingAddress) {
+        this.buildingAddress = buildingAddress;
     }
 }

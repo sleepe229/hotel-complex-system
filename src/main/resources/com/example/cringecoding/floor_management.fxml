@@ -14,7 +14,7 @@
         <columns>
             <TableColumn fx:id="idColumn" text="Floor ID" prefWidth="100.0"/>
             <TableColumn fx:id="buildingIdColumn" text="Building ID" prefWidth="100.0"/>
-            <TableColumn fx:id="numberOfRoomsColumn" text="Number of Rooms" prefWidth="100.0"/>
+            <TableColumn fx:id="numberOfFloorColumn" text="Number of Floor" prefWidth="100.0"/>
         </columns>
     </TableView>
     <TextField fx:id="searchField" layoutX="20.0" layoutY="10.0" promptText="Search..."/>
@@ -22,8 +22,9 @@
 
     <TextField fx:id="idField" layoutX="20.0" layoutY="270.0" promptText="Floor ID"/>
     <TextField fx:id="buildingIdField" layoutX="150.0" layoutY="270.0" promptText="Building ID"/>
-    <TextField fx:id="numberOfRoomsField" layoutX="280.0" layoutY="270.0" promptText="Number of Rooms"/>
+    <TextField fx:id="numberOfFloorField" layoutX="280.0" layoutY="270.0" promptText="Number of Rooms"/>
     <Button layoutX="400.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleAddFloor" text="Add"/>
     <Button layoutX="460.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleUpdateFloor" text="Update"/>
     <Button layoutX="520.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleDeleteFloor" text="Delete"/>
+    <Button text="Back" onAction="#handleBack"/>
 </AnchorPane>

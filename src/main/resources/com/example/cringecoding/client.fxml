@@ -8,7 +8,10 @@
     <top>
         <HBox spacing="10" alignment="CENTER" BorderPane.alignment="CENTER">
             <TextField fx:id="phoneNumberField" promptText="Phone Number" />
+            <TextField fx:id="clientNameField" promptText="Name" />
             <Button text="Book Room" onAction="#handleBookRoom" />
+            <Button text="Report" onAction="#handleReport" />
+            <Button text="Back" onAction="#handleBack"/>
         </HBox>
     </top>
     <center>
@@ -24,5 +27,7 @@
                 <ComboBox fx:id="roomTypeComboBox" />
             </HBox>
         </VBox>
+
+
     </center>
 </BorderPane>

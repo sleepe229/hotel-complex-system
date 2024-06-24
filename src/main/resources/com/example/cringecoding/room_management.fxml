@@ -26,5 +26,6 @@
     <Button layoutX="400.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleAddRoom" text="Add"/>
     <Button layoutX="460.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleUpdateRoom" text="Update"/>
     <Button layoutX="520.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleDeleteRoom" text="Delete"/>
+    <Button text="Back" onAction="#handleBack"/>
 </AnchorPane>
 

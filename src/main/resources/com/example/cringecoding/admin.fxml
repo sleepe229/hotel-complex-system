@@ -15,6 +15,7 @@
                     text="Room management" onAction="#handleRoomManagement"/>
             <Button fx:id="btn_floor_management" layoutX="242.0" layoutY="200.0" mnemonicParsing="false"
                     text="Floor management" onAction="#handleFloorManagement"/>
+            <Button text="Back" onAction="#handleBack"/>
         </AnchorPane>
     </center>
 </BorderPane>

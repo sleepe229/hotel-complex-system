@@ -2,6 +2,7 @@ package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.HotelBuilding;
 import com.example.cringecoding.Models.HotelComplex;
+import com.example.cringecoding.Services.OtherUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -222,5 +223,10 @@ public class BuildingManagementController {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        OtherUtils.changeScene(event, "/com/example/cringecoding/admin.fxml", "?");
     }
 }

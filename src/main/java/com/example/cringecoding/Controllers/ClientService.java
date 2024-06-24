@@ -2,10 +2,9 @@ package com.example.cringecoding.Controllers;
 
 import com.example.cringecoding.Models.Client;
 import com.example.cringecoding.DBUtils.HibernateUtil;
+import com.example.cringecoding.Models.Report;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 public class ClientService {
 
@@ -23,30 +22,6 @@ public class ClientService {
         }
     }
 
-    public List<Client> getAllClients() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Client", Client.class).list();
-        }
-    }
-
-    public void deleteClient(String phoneNumber) {
-        executeTransaction(session -> {
-            Client client = session.get(Client.class, phoneNumber);
-            if (client != null) {
-                session.delete(client);
-            }
-        });
-    }
-
-    public List<Client> searchClientsByName(String name) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Client WHERE name LIKE :name";
-            return session.createQuery(hql, Client.class)
-                    .setParameter("name", "%" + name + "%")
-                    .list();
-        }
-    }
-
     private void executeTransaction(TransactionConsumer consumer) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -59,6 +34,10 @@ public class ClientService {
             }
             e.printStackTrace();
         }
+    }
+
+    public void saveReport(Report report) {
+        executeTransaction(session -> session.save(report));
     }
 
     @FunctionalInterface
